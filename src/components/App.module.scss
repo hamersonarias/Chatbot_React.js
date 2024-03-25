@@ -1,0 +1,65 @@
+.app {
+    border: 1px solid grey; border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: medium;
+    height: calc(100% - 1rem);
+}
+
+.chatContainer {
+    margin: 1rem .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.botTextContainer {
+    display: flex;
+    align-items: end;
+    padding-right: 0.5rem;
+}
+.userTextContainer {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    padding-left: 0.5rem;
+}
+.text {
+    border-radius: 4px;
+    padding: 5px;
+    width: fit-content;
+    max-width: 12rem;
+    margin: 0.5rem 0;
+    overflow-wrap: anywhere;
+}
+.bot {
+    background-color: aliceblue;
+}
+.user {
+    background-color: rgb(158, 183, 251);
+}
+
+.inputContainer {
+    border-top: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    gap: 5px;
+}
+.userInput {
+    border: none;
+    min-width: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 5px;
+    font-size: medium;
+}
+
+.userInput:focus-visible {
+    outline: none;
+}
+.sendButton {
+    background: none;
+    border: none;
+}
