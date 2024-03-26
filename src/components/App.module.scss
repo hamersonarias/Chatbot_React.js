@@ -1,11 +1,15 @@
 .app {
-    border: 1px solid grey; border-radius: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-size: medium;
     height: calc(100% - 1rem);
+}
+
+.header {
+    display: flex;
+    align-content: space-between;
 }
 
 .chatContainer {
@@ -42,12 +46,14 @@
 }
 
 .inputContainer {
-    border-top: 1px solid grey;
+    border: 1px solid gray;
+    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .5rem;
     gap: 5px;
+    margin: .5rem;
 }
 .userInput {
     border: none;

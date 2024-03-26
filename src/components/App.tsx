@@ -18,7 +18,6 @@ const App = (props:Props):React.ReactElement => {
     const [inputValue, setInputValue] = useState("");
     const configJson = JSON.parse(props.config);
     const configPretty = JSON.stringify(configJson, null, '\t');
-    console.log(configPretty);
     const [chatArray, setChatArray] = useState<chatItem[]>([
         {
             isBot:true,
