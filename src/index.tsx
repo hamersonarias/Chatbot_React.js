@@ -4,12 +4,10 @@ import './index.scss';
 import Container from './components/Container';
 import reportWebVitals from './reportWebVitals';
 
-const ChatBotReact = document.getElementsByTagName('myGPT')[0] as HTMLElement;
+const ChatBotReact = document.getElementsByTagName('my-gpt')[0] as HTMLElement;
 const root = ReactDOM.createRoot(ChatBotReact);
 const siteUrl = ChatBotReact.getAttribute("siteUrl")??"";
 const config = ChatBotReact.getAttribute("config")??"";
-console.log(siteUrl);
-console.log(config);
 root.render(
   //<React.StrictMode>
     <Container siteUrl={siteUrl} config={config} />

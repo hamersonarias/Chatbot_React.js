@@ -35,14 +35,13 @@ export default class Container extends React.Component<IContainerProps, IChatBot
     }
     
     componentDidMount(): void {
-        console.log('componentDidMount called');
         initializeIcons(undefined, { disableWarnings: true });
 
     }
 
     public render(): React.ReactElement<IContainerProps> {
 
-        const closeIcon: IIconProps = { iconName: 'cancel',  };
+        const closeIconProps: IIconProps = { iconName: 'cancel',  };
         
         return (
             <section className={`${styles.chatBot}`}>
@@ -58,7 +57,7 @@ export default class Container extends React.Component<IContainerProps, IChatBot
                                 <img src={MyGptLogo} alt="MyGptLogo" height='24px' />
                                 <span style={{fontSize:'18px', fontWeight:'bold'}}>MyGPT</span>
                             </div>
-                            <IconButton iconProps={closeIcon} onClick={this.handleClickOverlay} className={styles.sideBarCloseButton}/>
+                            <IconButton iconProps={closeIconProps} onClick={this.handleClickOverlay} className={styles.sideBarCloseButton}/>
                         </div>
 
                         <Chat {...this.props}/>
