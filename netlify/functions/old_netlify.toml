@@ -1,5 +1,0 @@
-[[headers]]
-  # Define which paths this applies to
-  for = "/*"  # This applies to all paths
-  [headers.values]
-  Access-Control-Allow-Origin = "*"  # WARNING: Setting "*" allows any site to access your resources. Replace "*" with your domain where necessary.
