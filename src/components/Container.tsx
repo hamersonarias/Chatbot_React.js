@@ -9,35 +9,27 @@ import { initializeIcons } from '@fluentui/react/lib/Icons';
 import MyGptLogo from "../assets/MyGptLogo.svg";
 import Chat from './Chat';
 
-
 interface IChatBotState {
     isSidebarOpen: boolean;
     externalChatBotHtml: string;
     isDomRendered: boolean;
 }
 
-  
-
 export default class Container extends React.Component<IContainerProps, IChatBotState> {
     state = {
         isSidebarOpen: false,
         externalChatBotHtml: "",
         isDomRendered: false,
-
     }
 
     private myGptConfigJson: IMyGptConfigJson = JSON.parse(this.props.config);
 
     private handleClickOverlay = (): void => {
-            
         this.setState(prevstate => ({ isSidebarOpen: !prevstate.isSidebarOpen }));
-        
     }
     
     componentDidMount(): void {
         initializeIcons(undefined, { disableWarnings: true });
-        console.log("window.location", window.location);
-
     }
 
     public render(): React.ReactElement<IContainerProps> {
@@ -70,5 +62,4 @@ export default class Container extends React.Component<IContainerProps, IChatBot
             </section>
         );
     }
-    
 }
