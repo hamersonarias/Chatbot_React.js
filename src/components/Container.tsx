@@ -36,6 +36,7 @@ export default class Container extends React.Component<IContainerProps, IChatBot
     
     componentDidMount(): void {
         initializeIcons(undefined, { disableWarnings: true });
+        console.log("window.location", window.location);
 
     }
 
@@ -49,7 +50,7 @@ export default class Container extends React.Component<IContainerProps, IChatBot
                 {this.myGptConfigJson.displayMode === "overlay" && <>
                     
                     <button onClick={this.handleClickOverlay} className={styles.overlay} >
-                        <img src={MyGptLogo} alt="MyGptLogo" height='30px' />
+                        <img src={"https://whizzy-chatbotreact.netlify.app/" + MyGptLogo} alt="MyGptLogo" height='30px' />
                     </button>
                     <div className={this.state.isSidebarOpen ? styles.sideBar : styles.sideBarClosed} >
                         <div className={styles.header}>
