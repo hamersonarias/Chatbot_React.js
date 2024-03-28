@@ -14,4 +14,9 @@ export interface IAssetManifest {
 export interface IContainerProps {
     siteUrl: string;
     config: string;
+    chatBotProps: IChatBotProps;
+}
+
+export interface IChatBotProps {
+    hostDomain: string;
 }

@@ -50,12 +50,12 @@ export default class Container extends React.Component<IContainerProps, IChatBot
                 {this.myGptConfigJson.displayMode === "overlay" && <>
                     
                     <button onClick={this.handleClickOverlay} className={styles.overlay} >
-                        <img src={"https://whizzy-chatbotreact.netlify.app/" + MyGptLogo} alt="MyGptLogo" height='30px' />
+                        <img src={this.props.chatBotProps.hostDomain + MyGptLogo} alt="MyGptLogo" height='30px' />
                     </button>
                     <div className={this.state.isSidebarOpen ? styles.sideBar : styles.sideBarClosed} >
                         <div className={styles.header}>
                             <div className={styles.logoContainer}>
-                                <img src={MyGptLogo} alt="MyGptLogo" height='24px' />
+                                <img src={this.props.chatBotProps.hostDomain + MyGptLogo} alt="MyGptLogo" height='24px' />
                                 <span style={{fontSize:'18px', fontWeight:'bold'}}>MyGPT</span>
                             </div>
                             <IconButton iconProps={closeIconProps} onClick={this.handleClickOverlay} className={styles.sideBarCloseButton}/>

@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import Container from './components/Container';
 import reportWebVitals from './reportWebVitals';
+import {IChatBotProps} from './components/TypeDefinitions'
 
 const ChatBotReact = document.getElementsByTagName('my-gpt')[0] as HTMLElement;
 const root = ReactDOM.createRoot(ChatBotReact);
 const siteUrl = ChatBotReact.getAttribute("siteUrl")??"";
 const config = ChatBotReact.getAttribute("config")??"";
+const ChatBotProps: IChatBotProps = {
+    hostDomain: "https://whizzy-chatbotreact.netlify.app"
+}
 root.render(
   //<React.StrictMode>
-    <Container siteUrl={siteUrl} config={config} />
+    <Container siteUrl={siteUrl} config={config} chatBotProps={ChatBotProps} />
   //</React.StrictMode>
 );
 

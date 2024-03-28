@@ -67,7 +67,7 @@ const Chat = (props: IChatProps): React.ReactElement => {
             <div className={styles.inputContainer}>
                 <input value={(inputValue)} onChange={handleChangeInput} onKeyDown={handleKeyDown} className={styles.userInput} type="text" placeholder="Type your question here"></input>
                 <button onClick={handleSendButton} className={styles.sendButton}>
-                    <img src={"https://whizzy-chatbotreact.netlify.app/" + sendImg} height="20px" style={{ opacity: '0.4' }} alt="send" />
+                    <img src={props.chatBotProps.hostDomain + sendImg} height="20px" style={{ opacity: '0.4' }} alt="send" />
                 </button>
             </div>
 
