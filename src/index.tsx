@@ -20,6 +20,7 @@ const configFallback: IConfigDefault = {
     siteUrl: "" // ToDo: for prod, put VF URL here
 }
 const fetchConfigReturnDefaultOrFallback = async (): Promise<IConfigDefault> => {
+    console.log("fetch config");
     const url = ChatBotProps.hostDomain + '/config.json';
     try {
         const response = await fetch(url);
@@ -45,6 +46,7 @@ const isStringEmptyNullUndef = (string: string|null|undefined):boolean => {
 // get HTML anchor tag create react root
 const gptEl = document.getElementsByTagName('my-gpt')[0] as HTMLElement;
 const root = ReactDOM.createRoot(gptEl);
+console.log("gptEl", gptEl);
 
 // get attributes of HTML anchor tag 'my-gpt'
 let gptEl_siteUrl = gptEl.getAttribute("siteUrl");
