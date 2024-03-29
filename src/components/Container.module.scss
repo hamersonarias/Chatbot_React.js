@@ -73,6 +73,7 @@
         .clearChatContainer:hover {
             cursor: pointer;
             background-color: #F3F2F1;
+            padding-left: 5px;
         }
         .clearButton {
             border: none;
@@ -87,7 +88,6 @@
                 vertical-align: middle;
             }
         }
-
         .helpButton:hover {
             cursor: pointer;
             background-color: #F3F2F1;
@@ -100,6 +100,10 @@
                 font-size: xx-large;
                 opacity: 0.8;
             }
+        }
+        .closeButton:hover {
+            cursor: pointer;
+            background-color: #F3F2F1;
         }
 
     }
