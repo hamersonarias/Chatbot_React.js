@@ -49,7 +49,6 @@ const root = ReactDOM.createRoot(gptEl);
 // get attributes of HTML anchor tag 'my-gpt'
 let gptEl_siteUrl = gptEl.getAttribute("siteUrl");
 let gptEl_configString = gptEl.getAttribute("config");
-console.log("gptEl_configString", gptEl_configString);
 
 // if one of them is empty, fetch the configDefault
 if (isStringEmptyNullUndef(gptEl_siteUrl) || isStringEmptyNullUndef(gptEl_configString)) fetchConfigReturnDefaultOrFallback()
@@ -94,7 +93,6 @@ if (isStringEmptyNullUndef(gptEl_siteUrl) || isStringEmptyNullUndef(gptEl_config
     // if gptEl_siteUrl has value, we take the value from gptEl_siteUrl.
     if (isStringEmptyNullUndef(gptEl_siteUrl)) gptProps.siteUrl = configDefaultOrFallbackJson.siteUrl;
     else gptProps.siteUrl = gptEl_siteUrl!;
-    console.log("gptProps", gptProps);
     root.render(
         //<React.StrictMode>
         <Container gptProps={gptProps} chatBotProps={ChatBotProps} />
