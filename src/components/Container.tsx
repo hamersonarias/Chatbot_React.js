@@ -1,18 +1,18 @@
 import React from 'react';
-import { IconButton } from '@fluentui/react/lib/Button';
-//import { initializeIcons } from '@fluentui/react/lib/Icons';
-import { IIconProps } from '@fluentui/react';
-import { initializeIcons } from '@fluentui/font-icons-mdl2';
+// MUI
+import CloseIcon from '@mui/icons-material/Close';
 
-
+// assets
 import myGptLogo from "../assets/myGptLogo.svg";
 import clearChat from "../assets/clearChat.svg";
 import help from "../assets/help.svg";
 
+// components
 import styles from './Container.module.scss';
 import { IContainerProps, EDisplayMode } from './TypeDefinitions';
 import Chat from './Chat';
 
+// types
 interface IChatBotState {
     isSidebarOpen: boolean;
     externalChatBotHtml: string;
@@ -36,9 +36,6 @@ export default class Container extends React.Component<IContainerProps, IChatBot
         alert("help menu!")
     }
 
-    private cancelIconProps: IIconProps = { iconName: 'cancel' };
-    private cancelButton: React.ReactElement = <IconButton iconProps={this.cancelIconProps} onClick={this.toggleSidebar} className={styles.sideBarCloseButton} />
-
     private app: React.ReactElement = <>
         <div className={styles.header}>
             <div className={styles.logoContainer}>
@@ -55,18 +52,17 @@ export default class Container extends React.Component<IContainerProps, IChatBot
                 <button className={styles.helpButton} onClick={this.toggleHelpMenu} >
                     <img src={this.props.chatBotProps.hostDomain + help} alt="help" height='24px' />
                 </button>
-                {this.props.gptProps.displayMode === EDisplayMode.overlay && this.cancelButton }
+                {this.props.gptProps.displayMode === EDisplayMode.overlay && 
+                    <button className={styles.closeButton} onClick={this.toggleSidebar}><CloseIcon/></button> 
+                }
             </div>
         </div>
 
         <Chat {...this.props} />
     </>
  
-
-
-
     componentDidMount(): void {
-        initializeIcons(undefined, { disableWarnings: true });
+        //
     }
 
     public render(): React.ReactElement<IContainerProps> {
