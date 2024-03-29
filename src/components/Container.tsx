@@ -3,7 +3,7 @@ import { IconButton } from '@fluentui/react/lib/Button';
 import { IIconProps, } from '@fluentui/react';
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 
-import myGptLogo from "../assets/myGptLogo.svg";
+//import myGptLogo from "../assets/myGptLogo.svg";
 import clearChat from "../assets/clearChat.svg";
 import help from "../assets/help.svg";
 
@@ -48,12 +48,12 @@ export default class Container extends React.Component<IContainerProps, IChatBot
                 {this.props.gptProps.displayMode === EDisplayMode.overlay && <>
                     
                     <button onClick={this.toggleSidebar} className={styles.overlay} >
-                        <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="myGptLogo" height='30px' />
+                        {/* <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="myGptLogo" height='30px' /> */}
                     </button>
                     <div className={this.state.isSidebarOpen ? styles.sideBar : styles.sideBarClosed} >
                         <div className={styles.header}>
                             <div className={styles.logoContainer}>
-                                <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="MyGptLogo" height='24px' />
+                                {/* <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="MyGptLogo" height='24px' /> */}
                                 <span style={{fontSize:'18px', fontWeight:'bold'}}>MyGPT</span>
                             </div>
                             <div className={styles.clearChatContainer}>
