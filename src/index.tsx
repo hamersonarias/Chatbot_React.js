@@ -19,7 +19,7 @@ const configFallback: IConfigDefault = {
     displayMode: EDisplayMode.embedded,
     siteUrl: "" // ToDo: for prod, put VF URL here
 }
-const fetchConfigDefault = async (): Promise<IConfigDefault> => {
+const fetchConfigReturnDefaultOrFallback = async (): Promise<IConfigDefault> => {
     const url = ChatBotProps.hostDomain + '/config.json';
     try {
         const response = await fetch(url);
@@ -49,19 +49,20 @@ const root = ReactDOM.createRoot(gptEl);
 // get attributes of HTML anchor tag 'my-gpt'
 let gptEl_siteUrl = gptEl.getAttribute("siteUrl");
 let gptEl_configString = gptEl.getAttribute("config");
+console.log("gptEl_configString", gptEl_configString);
 
 // if one of them is empty, fetch the configDefault
-if (isStringEmptyNullUndef(gptEl_siteUrl) || isStringEmptyNullUndef(gptEl_configString)) fetchConfigDefault()
+if (isStringEmptyNullUndef(gptEl_siteUrl) || isStringEmptyNullUndef(gptEl_configString)) fetchConfigReturnDefaultOrFallback()
 // use then, because await is not allowed in top level
-.then((configDefaultJson) => {
-    // props from the gpt tag passed to the container component. For now they are identical with the configDefaultJson, but it can change later.
-    let gptProps: IGptProps = {...configDefaultJson};
+.then((configDefaultOrFallbackJson) => {
+    // props from the gpt tag passed to the container component. For now they are identical with the configDefaultOrFallbackJson, but it can change later.
+    let gptProps: IGptProps = {...configDefaultOrFallbackJson};
     // if attribute gptEl_configString has value
     if (!isStringEmptyNullUndef(gptEl_configString)) {
-        try { // if JSON.parse error, configDefaultJson is kept as gptProps
+        try { // if JSON.parse error, configDefaultOrFallbackJson is kept as gptProps
             let gptElConfigJson: IGptElConfigJson = JSON.parse(gptEl_configString!);
             // check values of parsed gptEl_configString
-            if (!isStringEmptyNullUndef(gptElConfigJson.scope)) gptProps.scope = gptElConfigJson.scope;
+            if (isStringEmptyNullUndef(gptElConfigJson.scope)) gptProps.scope = gptElConfigJson.scope;
             if (!isStringEmptyNullUndef(gptElConfigJson.chatMode) ) {
                 switch (gptElConfigJson.chatMode) {
                     case EChatMode.chat: gptProps.chatMode = EChatMode.chat; break;
@@ -85,15 +86,15 @@ if (isStringEmptyNullUndef(gptEl_siteUrl) || isStringEmptyNullUndef(gptEl_config
             }
         }
         catch (error) {
-            // if JSON.parse error, configDefaultJson is kept as gptProps
+            // if JSON.parse error, configDefaultOrFallbackJson is kept as gptProps
             console.log("Error parsing 'gptEl_configString': ", error);
         }
     };
-    // if gptEl_siteUrl is empty, we take the value from configDefaultJson.
+    // if gptEl_siteUrl is empty, we take the value from configDefaultOrFallbackJson.
     // if gptEl_siteUrl has value, we take the value from gptEl_siteUrl.
-    if (isStringEmptyNullUndef(gptEl_siteUrl)) gptProps.siteUrl = configDefaultJson.siteUrl;
+    if (isStringEmptyNullUndef(gptEl_siteUrl)) gptProps.siteUrl = configDefaultOrFallbackJson.siteUrl;
     else gptProps.siteUrl = gptEl_siteUrl!;
-
+    console.log("gptProps", gptProps);
     root.render(
         //<React.StrictMode>
         <Container gptProps={gptProps} chatBotProps={ChatBotProps} />
