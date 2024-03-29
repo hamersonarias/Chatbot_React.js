@@ -16,8 +16,7 @@ interface chatItem {
 const Chat = (props: IChatProps): React.ReactElement => {
 
     const [inputValue, setInputValue] = useState("");
-    const configJson = JSON.parse(props.config);
-    const configPretty = JSON.stringify(configJson, null, '\t');
+    const configPretty = JSON.stringify(props.gptProps, null, '\t');
     const [chatArray, setChatArray] = useState<chatItem[]>([
         {
             isBot: true,
@@ -25,7 +24,7 @@ const Chat = (props: IChatProps): React.ReactElement => {
         },
         {
             isBot: true,
-            message: `Site URL: ${props.siteUrl}`
+            message: `Site URL: ${props.gptProps.siteUrl}`
         },
         {
             isBot: true,

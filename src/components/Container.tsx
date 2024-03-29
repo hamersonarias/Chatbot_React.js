@@ -1,12 +1,14 @@
 import React from 'react';
-import styles from './Container.module.scss';
-
-import type { IContainerProps, IMyGptConfigJson } from './TypeDefinitions';
 import { IconButton } from '@fluentui/react/lib/Button';
 import { IIconProps, } from '@fluentui/react';
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 
-import MyGptLogo from "../assets/MyGptLogo.svg";
+import myGptLogo from "../assets/myGptLogo.svg";
+import clearChat from "../assets/clearChat.svg";
+import help from "../assets/help.svg";
+
+import styles from './Container.module.scss';
+import { IContainerProps, EDisplayMode } from './TypeDefinitions';
 import Chat from './Chat';
 
 interface IChatBotState {
@@ -22,10 +24,14 @@ export default class Container extends React.Component<IContainerProps, IChatBot
         isDomRendered: false,
     }
 
-    private myGptConfigJson: IMyGptConfigJson = JSON.parse(this.props.config);
-
-    private handleClickOverlay = (): void => {
+    private toggleSidebar = (): void => {
         this.setState(prevstate => ({ isSidebarOpen: !prevstate.isSidebarOpen }));
+    }
+    private clearChat = (): void => {
+        alert("chat cleared!")
+    }
+    private toggleHelpMenu = (): void => {
+        alert("help menu!")
     }
     
     componentDidMount(): void {
@@ -39,25 +45,34 @@ export default class Container extends React.Component<IContainerProps, IChatBot
         return (
             <section className={`${styles.chatBot}`}>
 
-                {this.myGptConfigJson.displayMode === "overlay" && <>
+                {this.props.gptProps.displayMode === EDisplayMode.overlay && <>
                     
-                    <button onClick={this.handleClickOverlay} className={styles.overlay} >
-                        <img src={this.props.chatBotProps.hostDomain + MyGptLogo} alt="MyGptLogo" height='30px' />
+                    <button onClick={this.toggleSidebar} className={styles.overlay} >
+                        <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="myGptLogo" height='30px' />
                     </button>
                     <div className={this.state.isSidebarOpen ? styles.sideBar : styles.sideBarClosed} >
                         <div className={styles.header}>
                             <div className={styles.logoContainer}>
-                                <img src={this.props.chatBotProps.hostDomain + MyGptLogo} alt="MyGptLogo" height='24px' />
+                                <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="MyGptLogo" height='24px' />
                                 <span style={{fontSize:'18px', fontWeight:'bold'}}>MyGPT</span>
                             </div>
-                            <IconButton iconProps={closeIconProps} onClick={this.handleClickOverlay} className={styles.sideBarCloseButton}/>
+                            <div className={styles.clearChatContainer}>
+                                <span>Clear chat</span>
+                                <button onClick={this.clearChat} >
+                                    <img src={this.props.chatBotProps.hostDomain + clearChat} alt="clearChat" height='30px' />
+                                </button>
+                            </div>
+                            <button onClick={this.toggleHelpMenu} >
+                                <img src={this.props.chatBotProps.hostDomain + help} alt="help" height='30px' />
+                            </button>
+                            <IconButton iconProps={closeIconProps} onClick={this.toggleSidebar} className={styles.sideBarCloseButton}/>
                         </div>
 
                         <Chat {...this.props}/>
                     </div>
                 </> }
 
-                {this.myGptConfigJson.displayMode === "embedded" && <Chat {...this.props}/>}
+                {this.props.gptProps.displayMode === EDisplayMode.embedded && <Chat {...this.props}/>}
 
             </section>
         );

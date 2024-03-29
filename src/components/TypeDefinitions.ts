@@ -1,4 +1,4 @@
-export interface IMyGptConfigJson {
+export interface IGptElConfigJson {
     scope: string;
     chatMode: string;
     displayTabs: string;
@@ -6,21 +6,39 @@ export interface IMyGptConfigJson {
 }
 
 
-// asset-manifest.json from MyGPT server
+// asset-manifest.json from GPT server
 export interface IAssetManifest {
     entrypoints: string[]
 }
-export interface IConfig {
+export interface IConfigDefault {
     scope: string;
-    chatMode: string;
-    displayTabs: string;
-    displayMode: string;
+    chatMode: EChatMode;
+    displayTabs: EBool;
+    displayMode: EDisplayMode;
     siteUrl: string;
+}
+export interface IGptProps {
+    scope: string;
+    chatMode: EChatMode;
+    displayTabs: EBool;
+    displayMode: EDisplayMode;
+    siteUrl: string;
+}
+export enum EChatMode {
+    chat = "chat",
+    documentsearch = "documentsearch",
+}
+export enum EBool {
+    yes = "yes",
+    no = "no",
+}
+export enum EDisplayMode {
+    embedded = "embedded",
+    overlay = "overlay",
 }
 
 export interface IContainerProps {
-    siteUrl: string;
-    config: string;
+    gptProps: IConfigDefault;
     chatBotProps: IChatBotProps;
 }
 
