@@ -53,7 +53,7 @@ let gptEl_siteUrl = gptEl.getAttribute("siteUrl");
 let gptEl_configString = gptEl.getAttribute("config");
 
 // if one of them is empty, fetch the configDefault
-if (isStringEmptyNullUndef(gptEl_siteUrl) || isStringEmptyNullUndef(gptEl_configString)) fetchConfigReturnDefaultOrFallback()
+fetchConfigReturnDefaultOrFallback()
 // use then, because await is not allowed in top level
 .then((configDefaultOrFallbackJson) => {
     // props from the gpt tag passed to the container component. For now they are identical with the configDefaultOrFallbackJson, but it can change later.
@@ -95,6 +95,7 @@ if (isStringEmptyNullUndef(gptEl_siteUrl) || isStringEmptyNullUndef(gptEl_config
     // if gptEl_siteUrl has value, we take the value from gptEl_siteUrl.
     if (isStringEmptyNullUndef(gptEl_siteUrl)) gptProps.siteUrl = configDefaultOrFallbackJson.siteUrl;
     else gptProps.siteUrl = gptEl_siteUrl!;
+    
     root.render(
         //<React.StrictMode>
         <Container gptProps={gptProps} chatBotProps={ChatBotProps} />
