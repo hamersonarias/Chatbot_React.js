@@ -40,11 +40,11 @@ export default class Container extends React.Component<IContainerProps, IChatBot
         <div className={styles.header}>
             <div className={styles.logoContainer}>
                 <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="Logo" height='24px' />
-                <span style={{ fontSize: '18px', fontWeight: 'bold' }}>MyGPT</span>
+                <span className={styles.logoText}>MyGPT</span>
             </div>
             <div className={styles.actionsContainer}>
                 <div className={styles.clearChatContainer} onClick={this.clearChat} >
-                    <span>Clear chat</span>
+                    <span className={styles.clearText}>Clear chat</span>
                     <button className={styles.clearButton}>
                         <img src={this.props.chatBotProps.hostDomain + clearChat} alt="Clear" height='24px' />
                     </button>

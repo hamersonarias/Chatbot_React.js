@@ -32,7 +32,9 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 25rem;
+    min-width: min(100vw, 15rem);
+    width: 50vw;
+    max-width: 25rem;
     height: 100%;
     z-index: 99;
     background-color: white;
@@ -41,6 +43,7 @@
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.133) 0px 1.6px 3.6px 0px;
     border-left: 1px solid gray;
+    overflow: auto;
 
 }
 
@@ -52,17 +55,25 @@
     align-self: center;
 }
 
-
 .header {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
     border-bottom: 1px solid gray;
+    container-type: inline-size;
+    container-name: header;
 
     .logoContainer {
         display: flex;
         align-items: center;
         gap: 10px;
+        .logoText {
+            font-size: 18px;
+            font-weight: bold;
+            @container header (max-width:350px) {
+                display: none;
+            }
+        }
     }
     .actionsContainer {
         display: flex;
@@ -73,7 +84,13 @@
         .clearChatContainer:hover {
             cursor: pointer;
             background-color: #F3F2F1;
-            padding-left: 5px;
+        }
+        .clearText {
+            padding-left: 6px;
+
+            @container header (max-width:250px) {
+                display: none;
+            }
         }
         .clearButton {
             border: none;
