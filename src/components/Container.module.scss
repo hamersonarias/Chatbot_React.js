@@ -5,129 +5,133 @@
     --button-hover-color-sidebar: #E1DFDD;
     --sidebar-bg-color: #FAF9F8;
     --global-font-familiy: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --svg-igon-opacity: 0.5;
+    --svg-icon-opacity: 0.7;
+    --icon-color: #484644;
 }
 
 .chatBot {
     overflow: hidden;
-    padding: 1em;
     color: "[theme:bodyText, default: #323130]";
     color: var(--bodyText);
     max-width: 800px;
     font-family: var(--global-font-familiy);
-}
 
-.overlay {
-    top: calc(100% - 130px);
-    right: 1rem;
-    z-index: 9;
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 1px solid gray;
-    background-color: white;
-}
-
-.overlay:hover {
-    background-color: var(--button-hover-color);
-    cursor: pointer;
-}
-
-.sideBar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    min-width: min(100vw, 15rem);
-    width: 50vw;
-    max-width: 25rem;
-    height: 100%;
-    z-index: 99;
-    background-color: var(--sidebar-bg-color); 
-    visibility: visible;
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.133) 0px 1.6px 3.6px 0px, rgba(0, 0, 0, 0.11) 0px 0.3px 0.9px 0px;
-    border-left: 1px solid #EDEBE9;
-    overflow: auto;
-
-}
-
-.sideBarClosed {
-    display: none;
-}
-
-.sideBarCloseButton {
-    align-self: center;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-    border-bottom: 2px solid #E1DFDD;
-    container-type: inline-size;
-    container-name: header;
-
-    .logoContainer {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        .logoText {
-            font-size: 18px;
-            font-weight: bold;
-            @container header (max-width:350px) {
-                display: none;
-            }
-        }
+    .overlay {
+        top: calc(100% - 130px);
+        right: 1rem;
+        z-index: 9;
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 1px solid gray;
+        background-color: white;
     }
-    .actionsContainer {
+
+    .overlay:hover {
+        background-color: var(--button-hover-color);
+        cursor: pointer;
+    }
+
+    .sideBar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        min-width: min(100vw, 15rem);
+        width: 50vw;
+        max-width: 25rem;
+        height: 100%;
+        z-index: 99;
+        background-color: var(--sidebar-bg-color); 
+        visibility: visible;
         display: flex;
-        .clearChatContainer {
+        flex-direction: column;
+        box-shadow: rgba(0, 0, 0, 0.133) 0px 1.6px 3.6px 0px, rgba(0, 0, 0, 0.11) 0px 0.3px 0.9px 0px;
+        border-left: 1px solid #EDEBE9;
+        overflow: auto;
+
+    }
+
+    .sideBarClosed {
+        display: none;
+    }
+
+    .sideBarCloseButton {
+        align-self: center;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid #E1DFDD;
+        container-type: inline-size;
+        container-name: header;
+
+        .logoContainer {
             display: flex;
             align-items: center;
-        }
-        .clearChatContainer:hover {
-            cursor: pointer;
-            background-color: var(--button-hover-color-sidebar);
-        }
-        .clearText {
-            padding-left: 6px;
-
-            @container header (max-width:250px) {
-                display: none;
-            }
-        }
-        .clearButton {
-            border: none;
-            background-color: transparent;
-            opacity: var(--svg-igon-opacity);
-        }
-        .helpButton {
-            border: none;
-            background-color: transparent;
-            opacity: var(--svg-igon-opacity);
             img {
-                vertical-align: middle;
-            }
-        }
-        .helpButton:hover {
-            cursor: pointer;
-            background-color: var(--button-hover-color-sidebar);
-        }
-        .closeButton {
-            border: none;
-            background-color: transparent;
-            svg {
-                vertical-align: middle;
-                font-size: xx-large;
-                opacity: var(--svg-igon-opacity);
-            }
-        }
-        .closeButton:hover {
-            cursor: pointer;
-            background-color: var(--button-hover-color-sidebar);
-        }
+                width: 16px;
+                height: 16px;
+                padding: 16px;
 
+            }
+            .logoText {
+                font-size: 16px;
+                font-weight: bold;
+                @container header (max-width:350px) {
+                    display: none;
+                }
+            }
+        }
+        .actionsContainer {
+            display: flex;
+            align-items: center;
+            
+            button {
+                border: none !important;
+                background-color: transparent;
+                padding: 0;
+                cursor: pointer;
+
+                img {
+                    width: 16px;
+                    height: 16px;
+                    padding: 16px;
+                    opacity: var(--svg-icon-opacity);
+                }
+                svg {
+                    vertical-align: middle;
+                    padding: 12px;
+                    color: var(--icon-color);
+                }
+            }
+            button:hover {
+                background-color: var(--button-hover-color-sidebar);
+            }
+            
+            .clearButton {
+                display: flex;
+                align-items: center;
+                .clearText {
+                    padding-left: 16px;
+                    @container header (max-width:250px) {
+                        display: none;
+                    }
+                }
+                img {
+                    margin: -1px 0 1px 0;
+                }
+            }
+            .helpButton {
+                cursor: pointer;
+                img {
+                    vertical-align: middle;
+                }
+            }
+            .closeButton {
+            }
+
+        }
     }
 }

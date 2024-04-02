@@ -39,18 +39,16 @@ export default class Container extends React.Component<IContainerProps, IChatBot
     private app: React.ReactElement = <>
         <div className={styles.header}>
             <div className={styles.logoContainer}>
-                <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="Logo" height='24px' />
+                <img src={this.props.chatBotProps.hostDomain + myGptLogo} alt="Logo" />
                 <span className={styles.logoText}>MyGPT</span>
             </div>
             <div className={styles.actionsContainer}>
-                <div className={styles.clearChatContainer} onClick={this.clearChat} >
-                    <span className={styles.clearText}>Clear chat</span>
-                    <button className={styles.clearButton}>
-                        <img src={this.props.chatBotProps.hostDomain + clearChat} alt="Clear" height='24px' />
-                    </button>
-                </div>
+                <button className={styles.clearButton} onClick={this.clearChat} >
+                    <div className={styles.clearText}>Clear chat</div>
+                    <img src={this.props.chatBotProps.hostDomain + clearChat} alt="Clear" />
+                </button>
                 <button className={styles.helpButton} onClick={this.toggleHelpMenu} >
-                    <img src={this.props.chatBotProps.hostDomain + help} alt="help" height='24px' />
+                    <img src={this.props.chatBotProps.hostDomain + help} alt="help" />
                 </button>
                 {this.props.gptProps.displayMode === EDisplayMode.overlay && 
                     <button className={styles.closeButton} onClick={this.toggleSidebar}><CloseIcon/></button> 
