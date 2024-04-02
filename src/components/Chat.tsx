@@ -50,7 +50,7 @@ const Chat = (props: IChatProps): React.ReactElement => {
     }
 
     return (
-        <section className={styles.app}>
+        <section className={styles.chat}>
             
             <div className={styles.chatContainer} >
                 {chatArray.map((chatItem, index) => {

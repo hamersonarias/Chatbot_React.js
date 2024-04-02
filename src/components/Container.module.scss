@@ -1,14 +1,20 @@
 @import '~@fluentui/react/dist/sass/References.scss';
 
+:root {
+    --button-hover-color: #F3F2F1;
+    --button-hover-color-sidebar: #E1DFDD;
+    --sidebar-bg-color: #FAF9F8;
+    --global-font-familiy: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --svg-igon-opacity: 0.5;
+}
+
 .chatBot {
     overflow: hidden;
     padding: 1em;
     color: "[theme:bodyText, default: #323130]";
     color: var(--bodyText);
     max-width: 800px;
-    &.teams {
-        font-family: $ms-font-family-fallbacks;
-    }
+    font-family: var(--global-font-familiy);
 }
 
 .overlay {
@@ -24,7 +30,7 @@
 }
 
 .overlay:hover {
-    background-color: #F3F2F1;
+    background-color: var(--button-hover-color);
     cursor: pointer;
 }
 
@@ -37,12 +43,12 @@
     max-width: 25rem;
     height: 100%;
     z-index: 99;
-    background-color: white;
+    background-color: var(--sidebar-bg-color); 
     visibility: visible;
     display: flex;
     flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.133) 0px 1.6px 3.6px 0px;
-    border-left: 1px solid gray;
+    box-shadow: rgba(0, 0, 0, 0.133) 0px 1.6px 3.6px 0px, rgba(0, 0, 0, 0.11) 0px 0.3px 0.9px 0px;
+    border-left: 1px solid #EDEBE9;
     overflow: auto;
 
 }
@@ -59,7 +65,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid #E1DFDD;
     container-type: inline-size;
     container-name: header;
 
@@ -83,7 +89,7 @@
         }
         .clearChatContainer:hover {
             cursor: pointer;
-            background-color: #F3F2F1;
+            background-color: var(--button-hover-color-sidebar);
         }
         .clearText {
             padding-left: 6px;
@@ -95,19 +101,19 @@
         .clearButton {
             border: none;
             background-color: transparent;
-            opacity: 0.8;
+            opacity: var(--svg-igon-opacity);
         }
         .helpButton {
             border: none;
             background-color: transparent;
-            opacity: 0.8;
+            opacity: var(--svg-igon-opacity);
             img {
                 vertical-align: middle;
             }
         }
         .helpButton:hover {
             cursor: pointer;
-            background-color: #F3F2F1;
+            background-color: var(--button-hover-color-sidebar);
         }
         .closeButton {
             border: none;
@@ -115,12 +121,12 @@
             svg {
                 vertical-align: middle;
                 font-size: xx-large;
-                opacity: 0.8;
+                opacity: var(--svg-igon-opacity);
             }
         }
         .closeButton:hover {
             cursor: pointer;
-            background-color: #F3F2F1;
+            background-color: var(--button-hover-color-sidebar);
         }
 
     }

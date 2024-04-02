@@ -1,5 +1,6 @@
-.app {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+.chat {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -39,14 +40,14 @@
     white-space: pre-wrap;
 }
 .bot {
-    background-color: aliceblue;
+    background-color: #F2F2F2;
 }
 .user {
-    background-color: rgb(158, 183, 251);
+    background-color: #E6F0FF;
 }
 
 .inputContainer {
-    border: 1px solid gray;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -58,9 +59,10 @@
 .userInput {
     border: none;
     min-width: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--global-font-familiy);
     padding: 5px;
     font-size: medium;
+    background-color: inherit; // var(--sidebar-bg-color)
 }
 
 .userInput:focus-visible {
