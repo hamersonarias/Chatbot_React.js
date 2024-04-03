@@ -7,7 +7,7 @@
     --global-font-familiy: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --svg-icon-opacity: 0.7;
     --icon-color: #484644;
-    --sharepoint-theme-color: "[theme: themePrimary, default: #0078D4]";
+    --sharepoint-theme-color: #0078D4;
 
     --margin-default: 16px;
     --header-height: 48px;
@@ -21,10 +21,8 @@
 
 .chatBot {
     overflow: hidden;
-    color: "[theme:bodyText, default: #323130]";
     color: var(--bodyText);
     max-width: 800px;
-    font-family: var(--global-font-familiy);
 
     .overlay {
         top: calc(100% - 130px);
@@ -59,6 +57,7 @@
         box-shadow: rgba(0, 0, 0, 0.133) 0px 1.6px 3.6px 0px, rgba(0, 0, 0, 0.11) 0px 0.3px 0.9px 0px;
         border-left: 1px solid #EDEBE9;
         overflow: auto;
+        padding: 0 var(--margin-default);
 
     }
 
@@ -76,7 +75,6 @@
         container-type: inline-size;
         container-name: header;
         height: var(--header-height);
-        margin: 0 var(--button-margin);
         gap: var(--button-gap);
 
         .logoContainer {
