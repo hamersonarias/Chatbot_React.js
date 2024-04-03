@@ -7,6 +7,16 @@
     --global-font-familiy: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --svg-icon-opacity: 0.7;
     --icon-color: #484644;
+    --sharepoint-theme-color: "[theme: themePrimary, default: #0078D4]";
+
+    --margin-default: 16px;
+    --header-height: 48px;
+    --button-size: 32px;
+    --button-icon-size: 16px;
+    --button-padding: calc((var(--button-size) - var(--button-icon-size))/2);
+    --button-margin: calc(var(--margin-default) - var(--button-padding));
+    --button-gap: 12px;
+
 }
 
 .chatBot {
@@ -63,21 +73,23 @@
     .header {
         display: flex;
         justify-content: space-between;
-        border-bottom: 2px solid #E1DFDD;
         container-type: inline-size;
         container-name: header;
+        height: var(--header-height);
+        margin: 0 var(--button-margin);
+        gap: var(--button-gap);
 
         .logoContainer {
             display: flex;
             align-items: center;
+            gap: var(--button-gap);
             img {
-                width: 16px;
-                height: 16px;
-                padding: 16px;
-
+                width: var(--button-icon-size);
+                height:var(--button-icon-size);
+                padding: var(--button-padding);
             }
             .logoText {
-                font-size: 16px;
+                font-size: var(--button-icon-size);
                 font-weight: bold;
                 @container header (max-width:350px) {
                     display: none;
@@ -87,51 +99,56 @@
         .actionsContainer {
             display: flex;
             align-items: center;
+            gap: var(--button-gap);
             
             button {
                 border: none !important;
+                border-radius: 4px;
                 background-color: transparent;
                 padding: 0;
                 cursor: pointer;
 
                 img {
-                    width: 16px;
-                    height: 16px;
-                    padding: 16px;
+                    width: var(--button-icon-size);
+                    height: var(--button-icon-size);
+                    padding: var(--button-padding);
                     opacity: var(--svg-icon-opacity);
-                }
-                svg {
                     vertical-align: middle;
-                    padding: 12px;
-                    color: var(--icon-color);
                 }
+
+                // svg see below
             }
             button:hover {
                 background-color: var(--button-hover-color-sidebar);
+                svg {
+                    color: var(--sharepoint-theme-color);
+                }
             }
             
             .clearButton {
                 display: flex;
                 align-items: center;
                 .clearText {
-                    padding-left: 16px;
+                    padding-left: var(--button-padding);
+                    font-family: var(--global-font-familiy);    
                     @container header (max-width:250px) {
                         display: none;
                     }
                 }
                 img {
-                    margin: -1px 0 1px 0;
+                    margin-top: -1px;
                 }
             }
-            .helpButton {
-                cursor: pointer;
-                img {
-                    vertical-align: middle;
-                }
-            }
-            .closeButton {
-            }
-
         }
     }
+}
+
+
+svg {
+    --svg-size: calc(var(--button-icon-size) + var(--button-padding));
+    width: var(--svg-size);
+    height: var(--svg-size);
+    vertical-align: middle;
+    padding: calc(var(--button-padding) - 4px);
+    color: var(--icon-color);
 }

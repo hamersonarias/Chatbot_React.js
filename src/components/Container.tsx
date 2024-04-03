@@ -1,11 +1,14 @@
 import React from 'react';
 // MUI
 import CloseIcon from '@mui/icons-material/Close';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 // assets
 import myGptLogo from "../assets/myGptLogo.svg";
-import clearChat from "../assets/clearChat.svg";
-import help from "../assets/help.svg";
+//import clearChat from "../assets/clearChat.svg";
+//import help from "../assets/help.svg";
+
 
 // components
 import styles from './Container.module.scss';
@@ -45,10 +48,12 @@ export default class Container extends React.Component<IContainerProps, IChatBot
             <div className={styles.actionsContainer}>
                 <button className={styles.clearButton} onClick={this.clearChat} >
                     <div className={styles.clearText}>Clear chat</div>
-                    <img src={this.props.chatBotProps.hostDomain + clearChat} alt="Clear" />
+                    <DeleteOutlinedIcon/>
+                    {/* <img src={this.props.chatBotProps.hostDomain + clearChat} alt="Clear" /> */}
                 </button>
                 <button className={styles.helpButton} onClick={this.toggleHelpMenu} >
-                    <img src={this.props.chatBotProps.hostDomain + help} alt="help" />
+                    <HelpOutlineOutlinedIcon/>
+                    {/* <img src={this.props.chatBotProps.hostDomain + help} alt="help" /> */}
                 </button>
                 {this.props.gptProps.displayMode === EDisplayMode.overlay && 
                     <button className={styles.closeButton} onClick={this.toggleSidebar}><CloseIcon/></button> 

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import styles from './Chat.module.scss';
 import type { IContainerProps } from './TypeDefinitions';
-
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 import sendImg from "../assets/send.svg";
 
@@ -48,20 +48,31 @@ const Chat = (props: IChatProps): React.ReactElement => {
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') { handleSendButton(); }
     }
+    const changeScope = ():void => {
+        alert("Change scope");
+    }
 
     return (
         <section className={styles.chat}>
-            
-            <div className={styles.chatContainer} >
-                {chatArray.map((chatItem, index) => {
-                    return (
-                        <div className={chatItem.isBot ? styles.botTextContainer : styles.userTextContainer} key={index}>
-                            <div className={`${styles.text} ${chatItem.isBot ? styles.bot : styles.user}`}>
-                                {chatItem.message}
+            <div className={styles.scopeAndChatContainer}>
+                <div className={styles.scopeContainer}>
+                    <CheckCircleOutlineIcon/>
+                    <div className={styles.title}>Scope:</div>
+                    <div className={styles.scope}>{props.gptProps.scope}</div>
+                    <div className={styles.change} onClick={changeScope}>Change</div>
+                </div>
+                <div className={styles.chatContainer} >
+                    {chatArray.map((chatItem, index) => {
+                        return (
+                            <div className={chatItem.isBot ? styles.botTextContainer : styles.userTextContainer} key={index}>
+                                <div className={`${styles.text} ${chatItem.isBot ? styles.bot : styles.user}`}>
+                                    {chatItem.message}
+                                </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
+
             </div>
             <div className={styles.inputContainer}>
                 <input value={(inputValue)} onChange={handleChangeInput} onKeyDown={handleKeyDown} className={styles.userInput} type="text"></input>
