@@ -54,7 +54,7 @@
             padding-left: 0.5rem;
         }
         .text {
-            border-radius: 4px;
+            border-radius: 10px;
             padding: 16px;
             width: fit-content;
             max-width: 460px;
@@ -87,7 +87,8 @@
             font-family: var(--global-font-familiy);
             padding: 5px;
             font-size: medium;
-            background-color: inherit; // var(--sidebar-bg-color)
+            background-color: inherit; 
+            width: -webkit-fill-available;
         }
         
         .userInput:focus-visible {
