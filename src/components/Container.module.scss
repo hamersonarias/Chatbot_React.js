@@ -16,7 +16,6 @@
     --button-padding: calc((var(--button-size) - var(--button-icon-size))/2);
     --button-margin: calc(var(--margin-default) - var(--button-padding));
     --button-gap: 12px;
-
 }
 
 .chatBot {
@@ -58,7 +57,6 @@
         border-left: 1px solid #EDEBE9;
         overflow: auto;
         padding: 0 var(--margin-default);
-
     }
 
     .sideBarClosed {
@@ -106,7 +104,7 @@
                 padding: 0;
                 cursor: pointer;
 
-                img {
+                img { // may be not needed
                     width: var(--button-icon-size);
                     height: var(--button-icon-size);
                     padding: var(--button-padding);
