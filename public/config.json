@@ -1,7 +1,8 @@
 {
+    "jsUrl": "https://whizzy-chatbotreact.netlify.app/public/main.js",
+    "cssUrl": "https://whizzy-chatbotreact.netlify.app/public/main.css",
     "scope": "lookout",
     "chatMode": "documentsearch",
     "displayTabs": "no",
-    "displayMode": "embedded",
-    "siteUrl": "https://dolani.sharepoint.com"
+    "displayMode": "embedded"
 }
