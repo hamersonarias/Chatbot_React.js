@@ -15,14 +15,12 @@ export interface IConfigDefault {
     chatMode: EChatMode;
     displayTabs: EBool;
     displayMode: EDisplayMode;
-    siteUrl: string;
 }
-export interface IGptProps {
+export interface IConfigJson {
     scope: string;
     chatMode: EChatMode;
     displayTabs: EBool;
     displayMode: EDisplayMode;
-    siteUrl: string;
 }
 export enum EChatMode {
     chat = "chat",

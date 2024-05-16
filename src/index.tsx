@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import Container from './components/Container';
 //import reportWebVitals from './reportWebVitals';
-import { IChatBotProps, IConfigDefault, IGptProps, EChatMode, EBool, EDisplayMode, IGptElConfigJson } from './components/TypeDefinitions'
+import { IChatBotProps, IConfigDefault, IConfigJson, EChatMode, EBool, EDisplayMode, IGptElConfigJson } from './components/TypeDefinitions'
 
 
 // helperfunctions and vars start
@@ -17,7 +17,6 @@ const configFallback: IConfigDefault = {
     chatMode: EChatMode.documentsearch,
     displayTabs: EBool.no,
     displayMode: EDisplayMode.embedded,
-    siteUrl: "" // ToDo: for prod, put VF URL here
 }
 const fetchConfigReturnDefaultOrFallback = async (): Promise<IConfigDefault> => {
     const url = ChatBotProps.hostDomain + '/config.json';
@@ -42,44 +41,46 @@ const isStringEmptyNullUndef = (string: string|null|undefined):boolean => {
 // ----------------------------
 // helperfunctions and vars end
 
+// the config passed from the wrapper web part or the site where this chatbot is embedded, is the overrride for the default config.
+// get both, and check if the props from the gpt tag are valid, if not, use the default config.
+
 // get HTML anchor tag create react root
 const gptEl = document.getElementsByTagName('my-gpt')[0] as HTMLElement;
 const root = ReactDOM.createRoot(gptEl);
 
 // get attributes of HTML anchor tag 'my-gpt'
-let gptEl_siteUrl = gptEl.getAttribute("siteUrl");
 let gptEl_configString = gptEl.getAttribute("config");
 
-// if one of them is empty, fetch the configDefault
+// fetch the configDefault
 fetchConfigReturnDefaultOrFallback()
 // use then, because await is not allowed in top level
 .then((configDefaultOrFallbackJson) => {
     // props from the gpt tag passed to the container component. For now they are identical with the configDefaultOrFallbackJson, but it can change later.
-    let gptProps: IGptProps = {...configDefaultOrFallbackJson};
+    let configJson: IConfigJson = {...configDefaultOrFallbackJson};
     // if attribute gptEl_configString has value
     if (!isStringEmptyNullUndef(gptEl_configString)) {
         try { // if JSON.parse error, configDefaultOrFallbackJson is kept as gptProps
             let gptElConfigJson: IGptElConfigJson = JSON.parse(gptEl_configString!);
             // check values of parsed gptEl_configString
-            if (isStringEmptyNullUndef(gptElConfigJson.scope)) gptProps.scope = gptElConfigJson.scope;
+            if (isStringEmptyNullUndef(gptElConfigJson.scope)) configJson.scope = gptElConfigJson.scope;
             if (!isStringEmptyNullUndef(gptElConfigJson.chatMode) ) {
                 switch (gptElConfigJson.chatMode) {
-                    case EChatMode.chat: gptProps.chatMode = EChatMode.chat; break;
-                    case EChatMode.documentsearch: gptProps.chatMode = EChatMode.documentsearch; break;
+                    case EChatMode.chat: configJson.chatMode = EChatMode.chat; break;
+                    case EChatMode.documentsearch: configJson.chatMode = EChatMode.documentsearch; break;
                     default: break; 
                 }
             }
             if (!isStringEmptyNullUndef(gptElConfigJson.displayMode) ) {
                 switch (gptElConfigJson.displayMode) {
-                    case EDisplayMode.embedded: gptProps.displayMode = EDisplayMode.embedded; break;
-                    case EDisplayMode.overlay: gptProps.displayMode = EDisplayMode.overlay; break;
+                    case EDisplayMode.embedded: configJson.displayMode = EDisplayMode.embedded; break;
+                    case EDisplayMode.overlay: configJson.displayMode = EDisplayMode.overlay; break;
                     default: break; 
                 }
             }
             if (!isStringEmptyNullUndef(gptElConfigJson.displayTabs) ) {
                 switch (gptElConfigJson.displayTabs) {
-                    case EBool.no: gptProps.displayTabs = EBool.no; break;
-                    case EBool.yes: gptProps.displayTabs = EBool.yes; break;
+                    case EBool.no: configJson.displayTabs = EBool.no; break;
+                    case EBool.yes: configJson.displayTabs = EBool.yes; break;
                     default: break; 
                 }
             }
@@ -89,14 +90,10 @@ fetchConfigReturnDefaultOrFallback()
             console.log("Error parsing 'gptEl_configString': ", error);
         }
     };
-    // if gptEl_siteUrl is empty, we take the value from configDefaultOrFallbackJson.
-    // if gptEl_siteUrl has value, we take the value from gptEl_siteUrl.
-    if (isStringEmptyNullUndef(gptEl_siteUrl)) gptProps.siteUrl = configDefaultOrFallbackJson.siteUrl;
-    else gptProps.siteUrl = gptEl_siteUrl!;
 
     root.render(
         //<React.StrictMode>
-        <Container gptProps={gptProps} chatBotProps={ChatBotProps} />
+        <Container gptProps={configJson} chatBotProps={ChatBotProps} />
         //</React.StrictMode>
     );
 });

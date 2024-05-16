@@ -24,10 +24,6 @@ const Chat = (props: IChatProps): React.ReactElement => {
         },
         {
             isBot: true,
-            message: `Site URL: ${props.gptProps.siteUrl}`
-        },
-        {
-            isBot: true,
             message: `Config: ${configPretty}`
         }
     ]);
